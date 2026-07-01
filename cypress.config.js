@@ -1,13 +1,18 @@
 const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
-  allowCypressEnv: false,
-
+  reporter: "mochawesome",
+  reporterOptions: {
+    reportDir: "cypress/reports",
+    overwrite: false,
+    html: false,
+    json: true
+  },
   e2e: {
     baseUrl: 'http://jupiter.cloud.planittesting.com',
      pageLoadTimeout: 60000,  
     setupNodeEvents(on, config) {
-      // implement node event listeners here
+      return config;
     },
   },
 });

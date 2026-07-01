@@ -22,7 +22,6 @@ describe('Contact Page Tests', () => {
     contact.verifyErrorsGone();
   });
 
-  // Test Case 2 - run 5 times
   for (let i = 1; i <= 5; i++) {
 
     it(`Test Case 2 - Successful submission run ${i}`, () => {
