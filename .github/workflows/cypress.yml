@@ -28,6 +28,12 @@ jobs:
       - name: Run Cypress tests
         run: npm run cypress:run
 
+      - name: Merge Mochawesome JSON reports
+        run: npm run merge:reports
+
+      - name: Generate HTML report
+        run: npm run report:html
+
       - name: Upload Mochawesome reports
         if: always()
         uses: actions/upload-artifact@v4
