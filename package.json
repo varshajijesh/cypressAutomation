@@ -1,4 +1,10 @@
 {
+  "scripts": {
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "merge:reports": "mochawesome-merge cypress/reports/*.json > cypress/reports/output.json",
+    "report:html": "marge cypress/reports/output.json -o cypress/reports"
+  },
   "devDependencies": {
     "@types/uuid": "^10.0.0",
     "cypress": "^15.18.0",
