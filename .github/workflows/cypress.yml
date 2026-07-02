@@ -40,10 +40,11 @@ jobs:
         with:
           server_address: smtp.gmail.com
           server_port: 587
-          username: ${{ secrets.MAIL_USERNAME }}
-          password: ${{ secrets.MAIL_PASSWORD }}
+          secure: false
+          username: ${{ secrets.GMAIL_USER }}
+          password: ${{ secrets.GMAIL_PASS }}
           from: ${{ secrets.MAIL_FROM }}
-          to: varshajijesh@gmail.com
+          to: testuser689943@gmail.com
           subject: Cypress HTML Report
           body: 'The Cypress HTML report is attached.'
           attachments: cypress/reports/*.html
