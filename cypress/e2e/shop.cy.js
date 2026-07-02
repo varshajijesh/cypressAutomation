@@ -8,7 +8,7 @@ describe('Shop Tests', () => {
   const shop = new ShopPage();
   const cart = new CartPage();
 
-  const prodName = require('../fixtures/products.json');
+  //const prodName = require('../fixtures/products.json');
 
   it('Test Case 3 - Cart validation', () => {
 
@@ -26,7 +26,7 @@ describe('Shop Tests', () => {
 
       products.forEach(product => {
         cart.verifyPrice(product.name, product.price);
-        cart.verifySubtotal(product.name, product.quantity);
+        cart.verifySubtotal(product.name, product.price, product.quantity);
       });
 
       cart.verifyTotal(products);

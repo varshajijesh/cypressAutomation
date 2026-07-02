@@ -8,9 +8,9 @@ module.exports = defineConfig({
     html: false,
     json: true
   },
+  defaultCommandTimeout: 10000,
   e2e: {
     baseUrl: 'http://jupiter.cloud.planittesting.com',
-     pageLoadTimeout: 60000,  
     setupNodeEvents(on, config) {
       return config;
     },

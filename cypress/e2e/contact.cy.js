@@ -22,6 +22,30 @@ describe('Contact Page Tests', () => {
     contact.verifyErrorsGone();
   });
 
+  it('Test Case 1b - Partial field validation', () => {
+
+    cy.visit('/');
+
+    home.openContactPage();
+
+    contact.fillPartialFields(data);
+    contact.submit();
+
+    contact.verifyMissingMessageError();
+  });
+
+  it('Test Case 1c - Invalid email validation', () => {
+
+    cy.visit('/');
+
+    home.openContactPage();
+
+    contact.fillInvalidEmail(data);
+    contact.submit();
+
+    contact.verifyEmailErrorVisible();
+  });
+
   for (let i = 1; i <= 5; i++) {
 
     it(`Test Case 2 - Successful submission run ${i}`, () => {

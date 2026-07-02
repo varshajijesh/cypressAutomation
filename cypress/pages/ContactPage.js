@@ -17,6 +17,17 @@ class ContactPage {
     this.message.type(data.message);
   }
 
+  fillPartialFields(data) {
+    this.forename.type(data.forename);
+    this.email.type(data.email);
+  }
+
+  fillInvalidEmail(data) {
+    this.forename.type(data.forename);
+    this.email.clear().type('not-an-email');
+    this.message.type(data.message);
+  }
+
   submit() {
     this.submitBtn.click();
   }
@@ -39,11 +50,21 @@ class ContactPage {
     this.messageError.should('not.exist');
   }
 
+  verifyMissingMessageError() {
+    this.messageError.should('be.visible');
+  }
+
+  verifyEmailErrorVisible() {
+    this.emailError.should('be.visible');
+  }
+
   verifySuccessMessage() {
-  cy.get('.alert-success', { timeout: 50000 })
-    .should('be.visible')
-    .and('contain', 'Thanks');
-}
+    const timeout = Cypress.config('defaultCommandTimeout');
+
+    cy.get('.alert-success', { timeout })
+      .should('be.visible')
+      .and('contain', 'Thanks');
+  }
 }
 
 export default ContactPage;
