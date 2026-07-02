@@ -34,6 +34,20 @@ jobs:
       - name: Generate HTML report
         run: npm run report:html
 
+      - name: Send HTML report by email
+        if: success()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 587
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          from: ${{ secrets.MAIL_FROM }}
+          to: varshajijesh@gmail.com
+          subject: Cypress HTML Report
+          body: 'The Cypress HTML report is attached.'
+          attachments: cypress/reports/*.html
+
       - name: Upload Mochawesome reports
         if: always()
         uses: actions/upload-artifact@v4
