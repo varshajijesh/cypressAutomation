@@ -1,5 +1,6 @@
 class CartPage {
 
+
     getPrice(product) {
         return cy.contains('tr', product)
             .find('td')
@@ -23,28 +24,27 @@ class CartPage {
     verifySubtotal(product, expectedPrice, qty) {
         this.getSubtotal(product).should(subtotalText => {
             const subtotal = parseFloat(subtotalText.text().replace('$', ''));
-            expect(subtotal).to.eq(expectedPrice * qty);
+                expect(subtotal).to.eq(expectedPrice * qty);
+
         });
     }
 
     verifyTotal(products) {
-        cy.wrap(products).then(items => {
-            return Cypress.Promise.all(
-                items.map(product => {
-                    return this.getSubtotal(product.name)
-                        .invoke('text')
-                        .then(text => parseFloat(text.replace('$', '')));
-                })
-            );
-        }).then(subtotalValues => {
-            const sum = subtotalValues.reduce((total, value) => total + value, 0);
+        let sum = 0;
 
-            this.getTotal().should(totalEl => {
-                const total = parseFloat(totalEl.text().replace('Total: ', '').replace('$', ''));
-                expect(total).to.eq(sum);
+        products.forEach(product => {
+            this.getSubtotal(product.name).then(el => {
+                const val = parseFloat(el.text().replace('$', ''));
+                sum += val;
             });
         });
+
+        this.getTotal().should(totalEl => {
+            const total = parseFloat(totalEl.text().replace('Total: ', '').replace('$', ''));
+            expect(total).to.eq(sum);
+        });
     }
+
 }
 
 export default CartPage;

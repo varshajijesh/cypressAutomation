@@ -3,7 +3,7 @@ class ContactPage {
   get forename() { return cy.get('#forename'); }
   get email() { return cy.get('#email'); }
   get message() { return cy.get('#message'); }
-  get submitBtn() { return cy.contains('a', 'Submit'); }
+  get submitBtn() { return cy.get('.btn-contact'); }
 
   get forenameError() { return cy.get('#forename-err'); }
   get emailError() { return cy.get('#email-err'); }
@@ -20,6 +20,7 @@ class ContactPage {
   fillPartialFields(data) {
     this.forename.type(data.forename);
     this.email.type(data.email);
+    this.submitBtn.click();
   }
 
   fillInvalidEmail(data) {
